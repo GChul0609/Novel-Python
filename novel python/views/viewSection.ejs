@@ -1,0 +1,38 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>免费小说</title>
+    <link rel="stylesheet" href="/lib/bootstrap-3.3.7-dist/css/bootstrap.min.css"/>
+    <script src="/lib/jquery-easyui-1.5/jquery.min.js"></script>
+    <script src="/lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+</head>
+<body>
+<%include head.ejs%>
+
+<div class="text-center">
+    <div class="btn-group" style="position:fixed; right:0; top: 0;opacity: 0.4">
+        <%if(index>0){%>
+        <a href="/viewsection?id=<%=novel._id%>&index=<%=index-1%>" class="btn btn-primary btn-lg">
+            <span class="glyphicon glyphicon-search"></span>
+            上一章
+        </a>
+        <%}%>
+        <a href="/viewnovel?id=<%=novel._id%>" class="btn btn-primary btn-lg">
+            <span class="glyphicon glyphicon-search"></span>
+            目录
+        </a>
+        <%if(index<novel.sections.length-1){%>
+        <a href="/viewsection?id=<%=novel._id%>&index=<%=index+1%>" class="btn btn-primary btn-lg">
+            <span class="glyphicon glyphicon-search"></span>
+            下一章
+        </a>
+        <%}%>
+    </div>
+</div>
+<div style="padding: 10px; text-align: center"><h1><%=novel.sections[index].name%></h1></div>
+<div style="padding: 10px"><%-content%></div>
+
+<%include footer.ejs%>
+</div>
+</body>
+</html>

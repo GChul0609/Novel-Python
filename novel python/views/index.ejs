@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!--访问地址  http://localhost:3000-->
+<!--分页  http://localhost:3000/?page=2-->
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>小说-<%=category%></title>
+    <link rel="stylesheet" href="/lib/bootstrap-3.3.7-dist/css/bootstrap.min.css"/>
+    <script src="/lib/jquery-easyui-1.5/jquery.min.js"></script>
+    <script src="/lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+</head>
+<body>
+<%include head.ejs%>
+<div style="overflow: hidden; zoom: 1">
+    <div class="text-center">
+        <div class="btn-group" style="margin: 0px 550px 15px">
+            <%if(page>1){%>
+                <a href="/?category=<%=category%>&searchTxt=<%=searchTxt%>&&page=<%=(page-1)%>" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-search"></span>上一页
+                </a>
+            <%}%>
+            <%if(isNextPage){%>
+                <a href="/?category=<%=category%>&searchTxt=<%=searchTxt%>&&page=<%=(page+1)%>" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-search"></span>下一页
+                </a>
+            <%}%>
+        </div>
+    </div>
+    <%for(var item of rows){%>
+    <div class="col-xs-6 col-sm-3 col-lg-2" style="height: 300px;margin-bottom:25px;">
+        <img src="<%=item.imgUrl%>" width="140" height="150"/>
+        <h3 style="width:150px; height:25px;overflow: hidden"><%=item.name%></h3>
+        <h5><%=item.author%></h5>
+        <p style="overflow: hidden;height: 40px"><%=item.description%></p>
+        <div class="btn-group">
+            <button type="button" class="btn btn-default ">
+                <span class="glyphicon glyphicon-align-justify">
+                    <a href="/viewNovel?id=<%=item._id%>">查看章节</a>
+                </span>
+            </button>
+            <button type="button" class="btn btn-primary">
+                <a href="/viewsection?id=<%=item._id%>&index=0" style="color: #fff">阅读</a>
+            </button>
+        </div>
+    </div>
+    <%}%>
+</div>
+<%include footer.ejs%>
+</body>
+</html>

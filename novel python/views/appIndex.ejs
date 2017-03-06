@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>免费小说</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="/lib/mui-master/examples/hello-mui/css/mui.min.css">
+</head>
+
+<body>
+<!--http://localhost:3000/app-->
+<header class="mui-bar mui-bar-nav">
+    <a class="mui-icon mui-icon-bars mui-pull-left mui-plus-visible">
+
+    </a>
+    <a id="info" class="mui-icon mui-icon-info-filled mui-pull-right" style="color: #999;"></a>
+    <h1 class="mui-title">梦想小说</h1>
+</header>
+<div class="mui-content" style="overflow: hidden;zoom: 1;">
+    <div class="text-center">
+        <div class="btn-group" style="margin-left: 180px">
+            <%if(page>1){%>
+            <a href="/?category=<%=category%>&searchTxt=<%=searchTxt%>&&page=<%=(page-1)%>" class="btn btn-primary">
+                <span class="glyphicon glyphicon-search"></span>上一页
+            </a>
+            <%}%>
+            <%if(isNextPage){%>
+            <a href="/?category=<%=category%>&searchTxt=<%=searchTxt%>&&page=<%=(page+1)%>" class="btn btn-primary">
+                <span class="glyphicon glyphicon-search"></span>下一页
+            </a>
+            <%}%>
+        </div>
+    </div>
+    <ul class="mui-table-view mui-grid-view">
+        <%for(var item of rows){%>
+        <li class="mui-table-view-cell mui-media mui-col-xs-4" style="height: 400px;">
+            <a href="#">
+                <img class="mui-media-object" src="<%=item.imgUrl%>" style="height: 180px"/>
+                <div class="mui-media-body">
+                    <span style="width: 100px; overflow: hidden;"><%=item.name%></span>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default ">
+                <span class="glyphicon glyphicon-align-justify">
+                    <a href="/viewNovel?id=<%=item._id%>">查看章节</a>
+                </span>
+                        </button>
+                        <button type="button" class="btn btn-primary">
+                            <a href="/viewsection?id=<%=item._id%>&index=0" style="color: #fff">阅读</a>
+                        </button>
+                    </div>
+                </div>
+            </a>
+        </li>
+        <%}%>
+    </ul>
+</div>
+    <script src="/lib/mui-master/examples/hello-mui/js/mui.min.js"></script>
+</body>
+
+</html>
+
+</body>
+</html>

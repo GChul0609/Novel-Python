@@ -1,0 +1,53 @@
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>免费小说</title>
+    <link rel="stylesheet" href="/lib/bootstrap-3.3.7-dist/css/bootstrap.min.css"/>
+    <script src="/lib/jquery-easyui-1.5/jquery.min.js"></script>
+    <script src="/lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <%include head.ejs%>
+    <div style="overflow: hidden; zoom: 1;">
+        <div class="col-md-5 col-lg-4">
+            <div class="panel panel-info">
+                <div class="panel-heading">小说详情</div>
+                <div class="panel-body">
+                    <div style="float: left; margin-right: 20px;">
+                        <img src="<%=data.imgUrl%>" style="width: 200px;height: 200px;"/>
+                    </div>
+                    <div>
+                        <h3><%=data.name%></h3>
+                        <p>作者:<%=data.author%><br><br>
+                            更新时间:<br><%=data.lastUpdateTime.toLocaleString()%>
+                        </p>
+                        <p style="float: left; height:60px; overflow: hidden;">简介:<h3><%=data.name%></h3></p>
+                    </div>
+                    <div class="btn-group" style="margin-top: 20px;">
+                        <button type="button" class="btn btn-default">
+                            <a>加入书架</a>
+                        </button>
+                        <button type="button" class="btn btn-info">
+                            <a href="/viewsection?id=<%=data._id%>">点击阅读</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7 col-lg-8">
+            <div class="panel panel-info">
+                <div class="panel-heading">小说章节</div>
+                <ul class="list-group">
+                    <%for(var item of data.sections){%>
+                    <li class="list-group-item">
+                        <a href="/viewsection?id=<%=data._id%>&index=<%=item.index%>"><%=item.name%></a>
+                    </li>
+                    <%}%>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <%include footer.ejs%>
+    </div>
+</body>
+</html>
